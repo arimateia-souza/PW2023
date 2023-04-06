@@ -111,4 +111,17 @@ public class TarefaDao {
             // response.getWriter().append("Connection Failed! Check output console");
         }
     }
+    public void apagarTarefa(Integer id) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        try {
+            connection = Conexao.getConnection();
+            stmt = connection.prepareStatement("DELETE FROM tarefa_tbl WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            connection.close();
+        } catch (SQLException | URISyntaxException ex) {
+            System.out.println(ex);
+        }
+    }
 }

@@ -123,6 +123,31 @@ public class TarefaController {
             writer.println("</html>" +
                     "</body>");
         }
+    @RequestMapping(value = "/doExcluir", method = RequestMethod.GET)
+    public void apagarTarefa(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        var id = Integer.parseInt(request.getParameter("id"));
+        var dao = new TarefaDao();
+
+        // verifica se a tarefa existe antes de apagar
+        Tarefa t = dao.getTarefaById(id);
+        if (t != null) {
+            dao.apagarTarefa(id);
+            var writer = response.getWriter();
+            writer.println("<html>");
+            writer.println("<body>");
+            writer.println("<p> Tarefa apagada com sucesso! </p>");
+            writer.println("</body>");
+            writer.println("</html>");
+        } else {
+            var writer = response.getWriter();
+            writer.println("<html>");
+            writer.println("<body>");
+            writer.println("<p> Tarefa não encontrada! </p>");
+            writer.println("</body>");
+            writer.println("</html>");
+        }
+    }
+
 }
 
 

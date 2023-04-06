@@ -12,12 +12,12 @@ public class Conexao {
     DATABASE_HOST=localhost;DATABASE_PORT=5432;DATABASE_NAME=tarefadb;DATABASE_USERNAME=postgres;DATABASE_PASSWORD=postgres
     */
     public static Connection getConnection() throws SQLException, URISyntaxException {
-        String dbUri = System.getenv("DATABASE_HOST");
-        String dbPort = System.getenv("DATABASE_PORT");
-        String dbName = System.getenv("DATABASE_NAME");
+        String dbUri = "localhost";
+        String dbPort = "5432";
+        String dbName = "tarefaWEB";
 
-        String username = System.getenv("DATABASE_USERNAME");
-        String password = System.getenv("DATABASE_PASSWORD");
+        String username = "postgres";
+        String password = "postgres";
         String dbUrl = "jdbc:postgresql://" + dbUri + ':' + dbPort + "/" + dbName + "?serverTimezone=UTC";
 
         return DriverManager.getConnection(dbUrl, username, password);
